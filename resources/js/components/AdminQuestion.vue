@@ -10,7 +10,7 @@
                 </svg>
             </a>
         </div>
-        <template v-if="showForm">
+        <div class="py-1" v-if="showForm">
             <div class="mb-5 text-sm text-gray-400 p-3 border text-center">
                 Changes are saved without reloading the page.
             </div>          
@@ -30,7 +30,7 @@
                     <a href="#" class="text-red-600" @click.prevent="destroyQuestion()">Delete</a>
                 </template>
             </adminQuestionForm>
-        </template> 
+        </div> 
     </li>
 </template>
 <script setup>

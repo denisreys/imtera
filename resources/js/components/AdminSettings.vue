@@ -46,7 +46,7 @@
     import { ref, reactive } from 'vue';
     const props = defineProps(['settings']);
     const emit = defineEmits(['updateSettings', 'updateQuestionsList'])
-    let paddings = [4,6,8,12];
+    let paddings = [4,8,16,24];
     const checked = reactive({
         top: props.settings['padding-top'],
         bottom: props.settings['padding-bottom']
@@ -58,8 +58,8 @@
             bottom: checked.bottom
         })
         .then(response => {
-            emit('updateSettings')
-            emit('updateQuestionsList')
+            emit('updateSettings');
+            emit('updateQuestionsList');
         });
     }
 </script>
