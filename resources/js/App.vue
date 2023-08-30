@@ -24,8 +24,9 @@
             /> 
         </div>
         <ul v-if="questions.data.length">
-            <question 
+            <dashboardQuestion
                 v-for="question in questions.data"
+                :key="question.id"
                 :id="question.id"
                 :question="question.question"
                 :answer="question.answer"
@@ -33,18 +34,16 @@
                 :paddingBottom="settings['padding-bottom']"
             />
         </ul>
-        <div class="" v-else>
+        <div v-else>
             There aren't questions yet. Press the cog icon to add
         </div>
     </div>
 </template>
 <script setup>
     import axios from 'axios';
-    import { reactive } from 'vue';
+    import { reactive, ref, onMounted } from 'vue';
     import admin from './components/Admin.vue';
-    import question from './components/DashboardQuestion.vue';
-    import { ref } from 'vue';
-    import { onMounted } from 'vue';
+    import dashboardQuestion from './components/DashboardQuestion.vue';
    
     const questions = reactive({
         data: {}
@@ -57,7 +56,7 @@
         getQuestionsList();
     });
     function getQuestionsList(){
-        axios.get('/question/').then((response) => {
+        axios.get('/question').then((response) => {
             questions.data = response.data;
         });
     }
